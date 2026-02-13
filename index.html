@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            font-size: 30px;
+            opacity: 0;
+            animation: float 6s ease-in infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 50px 40px;
+            border-radius: 40px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .heart {
+            font-size: 90px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 10px 20px rgba(245, 87, 108, 0.3));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.15); }
+            50% { transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 50px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 120px;
+        }
+
+        button {
+            font-weight: 700;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .yes-btn {
+            padding: 25px 70px;
+            font-size: 2em;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 10px 40px rgba(245, 87, 108, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .yes-btn::before {
+            content: '✨';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 40px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: rotate(0deg) scale(0.8); opacity: 0.5; }
+            50% { transform: rotate(180deg) scale(1.2); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 40px rgba(245, 87, 108, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 15px 50px rgba(245, 87, 108, 0.6); }
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 15px 50px rgba(245, 87, 108, 0.6);
+        }
+
+        .no-btn {
+            padding: 14px 35px;
+            font-size: 1.1em;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #666;
+            position: absolute;
+            white-space: nowrap;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .no-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .success, .invitation {
+            display: none;
+        }
+
+        .success.show, .invitation.show {
+            display: block;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .success h2 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+            animation: bounce 0.6s ease-in-out;
+            font-weight: 800;
+        }
+
+        .celebration-img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 25px;
+            margin: 25px auto;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            border: 5px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .invitation h2 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+            font-weight: 800;
+        }
+
+        .invitation p {
+            font-size: 1.4em;
+            color: #555;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .details {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 25px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .time {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: #f5576c;
+            margin: 10px 0;
+        }
+
+        .location {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #764ba2;
+            margin-top: 15px;
+        }
+
+        .restaurant-img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 25px;
+            margin: 25px auto;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            display: block;
+        }
+
+        .cute-cats {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .cute-cats img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #f5576c;
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+            animation: float-gentle 3s ease-in-out infinite;
+        }
+
+        .cute-cats img:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .cute-cats img:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-20px); }
+            50% { transform: translateY(0); }
+            75% { transform: translateY(-10px); }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: #f5576c;
+            animation: confetti-fall 4s linear;
+            z-index: 1000;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 25px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .yes-btn {
+                padding: 20px 50px;
+                font-size: 1.6em;
+            }
+            
+            .heart {
+                font-size: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question" id="question">
+            <div class="heart">💕</div>
+            <h1>Can you be my Valentine?</h1>
+            <div class="buttons">
+                <button class="yes-btn" onclick="handleYes()">Yes! 💖</button>
+                <button class="no-btn" id="noBtn" onclick="handleNo()">No</button>
+            </div>
+        </div>
+        
+        <div class="success" id="success">
+            <h2>Yay! 🎉</h2>
+            <img class="celebration-img" src="https://i.ytimg.com/vi/EQnaRtNMGMI/maxresdefault.jpg" alt="🎊">
+            <div class="cute-cats">
+                <img src="https://media.tenor.com/bGR776aT5OMAAAAC/mochi-mochi-cat.gif" alt="😺">
+                <img src="https://media.tenor.com/YC0-EguIKU8AAAAC/mochi-peach.gif" alt="😸">
+            </div>
+        </div>
+
+        <div class="invitation" id="invitation">
+            <h2>You're Invited! 🍽️</h2>
+            <div class="details">
+                <p class="time">📅 12:00 PM</p>
+                <p class="location">📍 La Loca Maria, Bandra</p>
+            </div>
+            <img class="restaurant-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="🍴">
+            <div class="cute-cats">
+                <img src="https://media.tenor.com/bGR776aT5OMAAAAC/mochi-mochi-cat.gif" alt="😺">
+                <img src="https://media.tenor.com/YC0-EguIKU8AAAAC/mochi-peach.gif" alt="😸">
+                <img src="https://media.tenor.com/RIllbb1n2dEAAAAC/mochi-cat-mochi-peach.gif" alt="😻">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const noTexts = [
+            "Are you sure? 🥺",
+            "Really? 😢",
+            "Please? 🥹",
+            "Don't do this 💔",
+            "Think again! 😭",
+            "You're breaking my heart 💔",
+            "One more chance? 🙏",
+            "Pretty please? 🥺"
+        ];
+        
+        let noClickCount = 0;
+
+        function createFloatingHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-hearts';
+                heart.textContent = ['💕', '💖', '💗', '💝'][Math.floor(Math.random() * 4)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 6000);
+            }, 800);
+        }
+
+        createFloatingHearts();
+
+        function handleNo() {
+            const noBtn = document.getElementById('noBtn');
+            noClickCount++;
+            
+            if (noClickCount < noTexts.length) {
+                noBtn.textContent = noTexts[noClickCount];
+            }
+            
+            const container = document.querySelector('.buttons');
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+            
+            const maxX = containerRect.width - btnRect.width - 100;
+            const maxY = containerRect.height - btnRect.height;
+            
+            const randomX = (Math.random() - 0.5) * maxX;
+            const randomY = (Math.random() - 0.5) * maxY;
+            
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        function handleYes() {
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('success').classList.add('show');
+            createConfetti();
+            
+            setTimeout(() => {
+                document.getElementById('success').style.display = 'none';
+                document.getElementById('invitation').classList.add('show');
+            }, 3500);
+        }
+
+        function createConfetti() {
+            const colors = ['#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#ffd700', '#ff9a9e'];
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.width = (Math.random() * 8 + 8) + 'px';
+                    confetti.style.height = confetti.style.width;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 20);
+            }
+        }
+    </script>
+</body>
+</html>
