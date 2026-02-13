@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Be My Valentine? 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,48 +13,29 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            background: #fef3f3;
             padding: 20px;
             overflow-x: hidden;
             position: relative;
         }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .sparkle {
+        body::before {
+            content: '';
             position: fixed;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 218, 224, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 240, 245, 0.4) 0%, transparent 50%);
             pointer-events: none;
-            animation: sparkle-fall 3s linear infinite;
-            box-shadow: 0 0 10px white;
-        }
-
-        @keyframes sparkle-fall {
-            0% {
-                transform: translateY(-100vh) scale(0);
-                opacity: 1;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) scale(1);
-                opacity: 0;
-            }
         }
 
         .floating-hearts {
@@ -62,7 +44,7 @@
             opacity: 0;
             animation: float 8s ease-in infinite;
             pointer-events: none;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.3));
         }
 
         @keyframes float {
@@ -83,39 +65,22 @@
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 60px 50px;
-            border-radius: 50px;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), 
-                        inset 0 0 50px rgba(255, 255, 255, 0.5);
+            background: white;
+            padding: 70px 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
             text-align: center;
-            max-width: 650px;
+            max-width: 700px;
             width: 100%;
             position: relative;
-            border: 5px solid rgba(255, 255, 255, 0.9);
-            animation: container-glow 3s ease-in-out infinite;
-        }
-
-        @keyframes container-glow {
-            0%, 100% {
-                box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), 
-                            inset 0 0 50px rgba(255, 255, 255, 0.5),
-                            0 0 50px rgba(255, 105, 180, 0.3);
-            }
-            50% {
-                box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), 
-                            inset 0 0 50px rgba(255, 255, 255, 0.5),
-                            0 0 80px rgba(255, 105, 180, 0.6);
-            }
+            border: 1px solid rgba(255, 192, 203, 0.3);
         }
 
         .heart {
             font-size: 100px;
             animation: heartbeat 1.5s ease-in-out infinite;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 15px 30px rgba(245, 87, 108, 0.5));
-            text-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+            margin-bottom: 30px;
+            filter: drop-shadow(0 10px 20px rgba(255, 105, 180, 0.3));
         }
 
         @keyframes heartbeat {
@@ -127,17 +92,17 @@
         }
 
         h1 {
-            font-size: 3.2em;
-            background: linear-gradient(135deg, #f5576c 0%, #f093fb 50%, #764ba2 100%);
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             font-weight: 900;
-            letter-spacing: -2px;
-            text-shadow: 0 5px 20px rgba(245, 87, 108, 0.3);
+            letter-spacing: -1px;
+            line-height: 1.2;
             animation: title-shine 3s ease-in-out infinite;
-            position: relative;
         }
 
         @keyframes title-shine {
@@ -155,42 +120,24 @@
         }
 
         button {
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             border: none;
-            border-radius: 60px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            font-family: 'Georgia', serif;
-            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .yes-btn {
-            padding: 30px 80px;
-            font-size: 2.2em;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 28px 75px;
+            font-size: 2em;
+            background: #d63384;
             color: white;
             animation: pulse 2s ease-in-out infinite;
-            box-shadow: 0 15px 50px rgba(245, 87, 108, 0.6),
-                        inset 0 -5px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(214, 51, 132, 0.3);
             position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-        }
-
-        .yes-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shine 3s ease-in-out infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: rotate(0deg) translate(-50%, -50%); }
-            100% { transform: rotate(360deg) translate(-50%, -50%); }
         }
 
         .yes-btn::after {
@@ -210,34 +157,31 @@
         @keyframes pulse {
             0%, 100% { 
                 transform: scale(1); 
-                box-shadow: 0 15px 50px rgba(245, 87, 108, 0.6),
-                            inset 0 -5px 20px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 10px 30px rgba(214, 51, 132, 0.3);
             }
             50% { 
-                transform: scale(1.1); 
-                box-shadow: 0 20px 60px rgba(245, 87, 108, 0.8),
-                            inset 0 -5px 20px rgba(0, 0, 0, 0.2),
-                            0 0 40px rgba(255, 255, 255, 0.5);
+                transform: scale(1.08); 
+                box-shadow: 0 15px 40px rgba(214, 51, 132, 0.5);
             }
         }
 
         .yes-btn:hover {
-            transform: scale(1.15) rotate(-2deg);
-            box-shadow: 0 20px 70px rgba(245, 87, 108, 0.8);
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(214, 51, 132, 0.5);
         }
 
         .no-btn {
             padding: 16px 40px;
-            font-size: 1.2em;
-            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
-            color: #333;
+            font-size: 1.1em;
+            background: #f8f9fa;
+            color: #6c757d;
             position: absolute;
             white-space: nowrap;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .no-btn:hover {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .success, .invitation {
@@ -246,122 +190,102 @@
 
         .success.show, .invitation.show {
             display: block;
-            animation: fadeIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: fadeIn 0.8s ease-in;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8) translateY(30px) rotate(-5deg); }
-            to { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .success h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 3.5em;
-            background: linear-gradient(135deg, #f5576c 0%, #f093fb 50%, #ffd89b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 20px 0;
-            animation: bounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            color: #d63384;
+            margin: 30px 0;
+            animation: bounce 0.8s ease-in-out;
             font-weight: 900;
-            letter-spacing: -1px;
         }
 
         .celebration-gif {
             width: 100%;
-            max-width: 500px;
-            border-radius: 30px;
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px;
             margin: 30px auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            border: 6px solid rgba(255, 255, 255, 0.9);
-            animation: image-float 3s ease-in-out infinite;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            display: block;
         }
 
-        @keyframes image-float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+        .celebration-gif.loading {
+            min-height: 300px;
+            background: linear-gradient(135deg, #ffeef0 0%, #ffe8ec 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .invitation h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 3em;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 25px 0;
+            color: #d63384;
+            margin: 30px 0;
             font-weight: 900;
-            letter-spacing: -1px;
         }
 
         .invitation p {
-            font-size: 1.5em;
-            color: #444;
+            font-size: 1.4em;
+            color: #6c757d;
             margin: 20px 0;
-            line-height: 2;
-            font-style: italic;
+            line-height: 1.8;
         }
 
         .details {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe8ec 100%);
             padding: 40px;
-            border-radius: 30px;
+            border-radius: 20px;
             margin: 35px 0;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2),
-                        inset 0 0 30px rgba(255, 255, 255, 0.5);
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            animation: detail-glow 3s ease-in-out infinite;
-        }
-
-        @keyframes detail-glow {
-            0%, 100% {
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2),
-                            inset 0 0 30px rgba(255, 255, 255, 0.5);
-            }
-            50% {
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2),
-                            inset 0 0 30px rgba(255, 255, 255, 0.5),
-                            0 0 50px rgba(255, 154, 158, 0.6);
-            }
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 192, 203, 0.3);
         }
 
         .time {
-            font-size: 2em;
-            font-weight: 900;
-            color: #f5576c;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #d63384;
             margin: 15px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .location {
-            font-size: 1.7em;
-            font-weight: 800;
-            color: #764ba2;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #d63384;
             margin-top: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .restaurant-img {
             width: 100%;
-            max-width: 550px;
-            border-radius: 30px;
+            max-width: 600px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 20px;
             margin: 30px auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            border: 6px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
             display: block;
-            animation: image-float 3s ease-in-out infinite;
         }
 
         .cute-emojis {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             justify-content: center;
-            margin-top: 35px;
+            margin-top: 40px;
             flex-wrap: wrap;
         }
 
         .cute-emojis span {
             font-size: 80px;
             animation: emoji-bounce 2s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
         }
 
         .cute-emojis span:nth-child(1) {
@@ -393,31 +317,31 @@
 
         .confetti {
             position: fixed;
-            width: 15px;
-            height: 15px;
-            animation: confetti-fall 5s linear;
+            width: 12px;
+            height: 12px;
+            animation: confetti-fall 4s linear;
             z-index: 1000;
         }
 
         @keyframes confetti-fall {
             to {
-                transform: translateY(100vh) rotate(1080deg);
+                transform: translateY(100vh) rotate(720deg);
                 opacity: 0;
             }
         }
 
         @media (max-width: 600px) {
             .container {
-                padding: 40px 30px;
+                padding: 50px 30px;
             }
             
             h1 {
-                font-size: 2.2em;
+                font-size: 2.5em;
             }
             
             .yes-btn {
-                padding: 25px 60px;
-                font-size: 1.8em;
+                padding: 22px 55px;
+                font-size: 1.7em;
             }
             
             .heart {
@@ -434,7 +358,7 @@
     <div class="container">
         <div class="question" id="question">
             <div class="heart">💕</div>
-            <h1>Can you be my Valentine?</h1>
+            <h1>Will you be my Valentine?</h1>
             <div class="buttons">
                 <button class="yes-btn" onclick="handleYes()">Yes! 💖</button>
                 <button class="no-btn" id="noBtn" onclick="handleNo()">No</button>
@@ -443,7 +367,9 @@
         
         <div class="success" id="success">
             <h2>Yay! 🎉</h2>
-            <img class="celebration-gif" src="https://media.giphy.com/media/g9582DNuQppxC/giphy.gif" alt="🎊">
+            <div style="font-size: 120px; margin: 30px 0;">
+                😱🎊✨
+            </div>
             <div class="cute-emojis">
                 <span>😻</span>
                 <span>🥰</span>
@@ -458,7 +384,7 @@
                 <p class="time">📅 12:00 PM</p>
                 <p class="location">📍 La Loca Maria, Bandra</p>
             </div>
-            <img class="restaurant-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="🍴">
+            <img class="restaurant-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Restaurant">
             <div class="cute-emojis">
                 <span>🌹</span>
                 <span>🥂</span>
@@ -481,19 +407,6 @@
         
         let noClickCount = 0;
 
-        function createSparkles() {
-            setInterval(() => {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 3 + 's';
-                sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 5000);
-            }, 300);
-        }
-
         function createFloatingHearts() {
             setInterval(() => {
                 const heart = document.createElement('div');
@@ -508,7 +421,6 @@
             }, 600);
         }
 
-        createSparkles();
         createFloatingHearts();
 
         function handleNo() {
@@ -540,31 +452,28 @@
             setTimeout(() => {
                 document.getElementById('success').style.display = 'none';
                 document.getElementById('invitation').classList.add('show');
-            }, 4000);
+            }, 3500);
         }
 
         function createConfetti() {
-            const colors = ['#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#ffd700', '#ff9a9e', '#96e6a1', '#ffecd2'];
-            const shapes = ['circle', 'square'];
+            const colors = ['#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#ffd700', '#ff9a9e', '#96e6a1', '#ffecd2', '#d63384', '#ffb6c1'];
             
-            for (let i = 0; i < 200; i++) {
+            for (let i = 0; i < 150; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
                     confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-20px';
                     confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 2 + 's';
-                    confetti.style.width = (Math.random() * 10 + 10) + 'px';
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.width = (Math.random() * 10 + 8) + 'px';
                     confetti.style.height = confetti.style.width;
-                    
-                    if (shapes[Math.floor(Math.random() * shapes.length)] === 'circle') {
-                        confetti.style.borderRadius = '50%';
-                    }
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
                     
                     document.body.appendChild(confetti);
                     
-                    setTimeout(() => confetti.remove(), 5000);
-                }, i * 15);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 20);
             }
         }
     </script>
